@@ -1,0 +1,24 @@
+<div class="wrapper reply-wrapper" id="{{ reply.id }}">
+  <div class="flex-container">
+    <div class="likes">
+      <button class="plus reply-plus">+</button>
+      <span>{{ reply.score }}</span>
+      <button class="minus reply-minus">-</button>
+    </div>
+    <div class="user-info1">
+      <div class="avatar1">
+        <img class="avatars" src="{{ reply.user.image.png }}" />
+      </div>
+      <div class="username1">
+        <span>{{ reply.user.username }} </span>
+      </div>
+      <div class="date1">
+        <span>{{ reply.createdAt }}</span>
+      </div>
+
+      <div class="content1">
+        <span>{{ reply.content }}</span>
+      </div>
+    </div>
+  </div>
+</div>

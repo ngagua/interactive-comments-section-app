@@ -1,0 +1,28 @@
+<div class="comments" id="{{ comment.id }}">
+  <div class="flex-container">
+    <div class="likes">
+      <button class="plus">+</button>
+      <span class="post-scores">{{ comment.score }}</span>
+      <button class="minus">-</button>
+    </div>
+    <div class="user-info">
+      <div class="avatar">
+        <img class="avatars" src="{{ comment.user.image.png }}" />
+      </div>
+      <div class="username">
+        <span>{{ comment.user.username }} </span>
+      </div>
+      <div class="date">
+        <span>{{ comment.createdAt }}</span>
+      </div>
+      <div class="replybtn">
+        <img class="replyicon" src="/assets/images/icon-reply.svg" />
+        <button class="btn">reply</button>
+      </div>
+
+      <div class="content">
+        <span>{{ comment.content }}</span>
+      </div>
+    </div>
+  </div>
+</div>
