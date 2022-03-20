@@ -6,6 +6,9 @@ import { CommentsshellComponent } from './components/comments-shell/comments-she
 import { RepliesComponent } from './components/replies/replies.component';
 import { NewRepliesComponent } from './components/new-replies/new-replies.component';
 import { CommentComponent } from './components/comment/comment.component';
+import { FormsModule } from '@angular/forms';
+import { NewCommentComponent } from './new-comment/new-comment.component';
+
 
 @NgModule({
   declarations: [
@@ -13,10 +16,12 @@ import { CommentComponent } from './components/comment/comment.component';
     CommentsshellComponent,
     RepliesComponent,
     NewRepliesComponent,
-    CommentComponent
+    CommentComponent,
+    NewCommentComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,9 +1,9 @@
 <div class="comments" id="{{ comment.id }}">
   <div class="flex-container">
     <div class="likes">
-      <button class="plus">+</button>
+      <button class="plus" (click)="changeScore('plus')">+</button>
       <span class="post-scores">{{ comment.score }}</span>
-      <button class="minus">-</button>
+      <button class="minus" (click)="changeScore('minus')">-</button>
     </div>
     <div class="user-info">
       <div class="avatar">
@@ -17,7 +17,7 @@
       </div>
       <div class="replybtn">
         <img class="replyicon" src="/assets/images/icon-reply.svg" />
-        <button class="btn">reply</button>
+        <button class="btn" (click)="toggleReply ()">reply</button>
       </div>
 
       <div class="content">
@@ -26,3 +26,6 @@
     </div>
   </div>
 </div>
+<app-replies *ngFor="let item of comment.replies" [reply]="item" (onScoreReply)="onScoreReplyHandler($event)">
+</app-replies>
+<app-new-replies *ngIf="isReply" (onReply)="onReplyhandler($event)"> </app-new-replies>

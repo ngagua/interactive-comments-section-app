@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Comments, User } from 'src/app/model/model';
 import { UserService } from 'src/app/user.service';
 
@@ -9,39 +9,28 @@ import { UserService } from 'src/app/user.service';
   styleUrls: ['./new-replies.component.css']
 })
 export class NewRepliesComponent implements OnInit {
-  @Input() comment!: Comments;
-  @Output() AddReply: EventEmitter<Comment> = new EventEmitter();
+  @Output() onReply: EventEmitter<string> = new EventEmitter<string>();
+
 
   content: string = '';
   currentUser!: User;
-  
-  constructor(private userService: UserService ) { }
+
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
     this.userService.getusers().then(
       data => this.currentUser = data.currentUser);
   }
 
-  addReply () {
+  addReply() {
     if (!this.content) {
       return;
     }
 
-    const newReply: Comments = {
-      content: this.content,
-      createdAt: JSON.stringify(new Date(Date.now())),
-      score: 0,
-      user: this.currentUser,
-      replyingTo: this.comment.user.username,
-      replies: []
-    }
-
-    this.comment.replies.push(newReply);
-
-    // this.onAddReply.emit(this.comment);
-
+    this.onReply.emit(this.content);
     this.content = '';
   }
+
 
 
 
