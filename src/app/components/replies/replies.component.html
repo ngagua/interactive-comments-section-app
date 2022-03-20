@@ -21,7 +21,17 @@
           <span>{{ reply?.createdAt }}</span>
         </div>
       </div>
-      <div *ngIf="reply.user == currentUser" class="currentuser-btn">
+      <div
+        class="replybtn"
+        *ngIf="reply.user.username !== currentUser.username"
+      >
+        <img class="replyicon" src="/assets/images/icon-reply.svg" />
+        <button class="btn" (click)="onReply()">reply</button>
+      </div>
+      <div
+        *ngIf="reply.user.username == currentUser.username"
+        class="currentuser-btn"
+      >
         <div class="replybtn">
           <img class="replyicon" src="/assets/images/icon-delete.svg" />
           <button class="btn" (click)="onDelete()">delete</button>

@@ -16,6 +16,7 @@ export class CommentComponent implements OnInit {
   @Output() onScoreReply: EventEmitter<ScoresEvent> = new EventEmitter<ScoresEvent>();
   @Output() onDeleteComment:  EventEmitter<number> = new EventEmitter<number>();
   @Output() onDeleteReply:  EventEmitter<number> = new EventEmitter<number>();
+  @Output() onReply: EventEmitter<any> = new EventEmitter<any>();
 
 
   isReply: boolean = false;
@@ -26,7 +27,7 @@ export class CommentComponent implements OnInit {
   ngOnInit(): void {
   }
   toggleReply() {
-    this.isReply = !this.isReply;
+   this.isReply = !this.isReply;
   }
 
   onDelete(){
@@ -45,17 +46,12 @@ export class CommentComponent implements OnInit {
   }
 
 
-  onReplyhandler(content: string) {
-    const newReply: Comments = {
+  onReplyhandler({ content, id }:any) {
+    this.onReply.emit({
       content: content,
-      createdAt: JSON.stringify(new Date(Date.now())),
-      score: 0,
-      user: this.currentUser,
-      replyingTo: this.comment.user.username,
-      replies: []
-    }
-
-    this.comment.replies.push(newReply);
+      id: id,
+    })
+    
     this.toggleReply();
   }
 

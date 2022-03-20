@@ -12,13 +12,20 @@ export class RepliesComponent implements OnInit {
   @Input() currentUser!: User;
   @Output() onScoreReply: EventEmitter<ScoresEvent> = new EventEmitter<ScoresEvent>();
   @Output() onDeleteReply:  EventEmitter<number> = new EventEmitter<number>();
+  @Output() ontoggleReply: EventEmitter<any> = new EventEmitter<any>();
   constructor() { }
 
   ngOnInit(): void {
   }
+
   onDelete(){
     this.onDeleteReply.emit(this.reply?.id)
   }
+
+  onReply(){
+    this.ontoggleReply.emit();
+  }
+
   changeReplyScore(type: string) {
     this.onScoreReply.emit({
       id: this.reply?.id ? this.reply.id : 0,

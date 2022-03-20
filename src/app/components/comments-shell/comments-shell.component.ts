@@ -64,10 +64,27 @@ export class CommentsshellComponent implements OnInit {
 
   }
 
+  generateMaxId(): number {
+    let id = 1;
+    this.commentslist.forEach((mainComment) => {
+      if (mainComment.id) {
+        if (mainComment?.id > id) 
+        id = mainComment.id;
+      }
+      mainComment.replies.forEach((item) => {
+        if (item.id) {
+          if (item.id > id) 
+          id = item.id;
+        }
+      });
+    });
 
+    return ++id;
+  }
 
   onCommenthandler(content: string) {
     const newComment: Comments = {
+      id: this.generateMaxId(),
       content: content,
       createdAt: JSON.stringify(new Date(Date.now())),
       score: 0,
@@ -78,17 +95,40 @@ export class CommentsshellComponent implements OnInit {
     this.commentslist.push(newComment);
 
   }
+
   deleteCommenthandler(id:number) {    
      this.commentslist = this.commentslist.filter((comment) => comment.id !== id);
       }
-  deleteReplyhandler(id:number) { 
-     this.commentslist.filter(item => {
-          item.replies.filter(reply => {
-            reply.id == id
 
-         
+  deleteReplyhandler(id:number) { 
+     this.commentslist.forEach(item => {
+         item.replies = item.replies.filter(reply => {
+          return  reply.id !== id
         })
       })
     }
+
+
+    onReplyhandler({content, id}:any) {
+      const newReply: Comments = {
+        id: this.generateMaxId(),
+        content: content,
+        createdAt: JSON.stringify(new Date(Date.now())),
+        score: 0,
+        user: this.currentUser,
+        replyingTo: "nikusha",
+        replies: []
+      }
+      
+  
+    this.commentslist.forEach(comment => {
+        if(comment.id == id){
+          comment.replies.push(newReply)
+        }
+
+      })
+      
+    }
+  
 
 }

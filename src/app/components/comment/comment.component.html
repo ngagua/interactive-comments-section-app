@@ -46,7 +46,12 @@
   [reply]="item"
   (onScoreReply)="onScoreReplyHandler($event)"
   (onDeleteReply)="onDeleteReplyHandler($event)"
+  (ontoggleReply)="toggleReply()"
 >
 </app-replies>
-<app-new-replies *ngIf="isReply" (onReply)="onReplyhandler($event)">
+<app-new-replies
+  *ngIf="isReply"
+  (onReply)="onReplyhandler($event)"
+  [comment]="comment"
+>
 </app-new-replies>

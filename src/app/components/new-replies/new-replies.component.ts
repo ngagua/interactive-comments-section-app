@@ -9,8 +9,9 @@ import { UserService } from 'src/app/user.service';
   styleUrls: ['./new-replies.component.css']
 })
 export class NewRepliesComponent implements OnInit {
-  @Output() onReply: EventEmitter<string> = new EventEmitter<string>();
-
+  @Output() onReply: EventEmitter<any> = new EventEmitter<any>();
+  @Input() reply!: Comments;
+  @Input() comment!: Comments;
 
   content: string = '';
   currentUser!: User;
@@ -26,8 +27,10 @@ export class NewRepliesComponent implements OnInit {
     if (!this.content) {
       return;
     }
-
-    this.onReply.emit(this.content);
+    this.onReply.emit({
+      content: this.content,
+      id: this.comment.id,
+    });
     this.content = '';
   }
 
