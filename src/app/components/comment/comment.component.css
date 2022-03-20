@@ -47,3 +47,22 @@
   display: flex;
   gap: 5px;
 }
+
+.rpl-text {
+  width: 500px;
+  border-radius: 5px;
+}
+
+.confirmbtn {
+  height: 30px;
+  width: 90px;
+  border: none;
+  background-color: blue;
+  border-radius: 5px;
+  color: white;
+}
+
+.edit-content {
+  display: flex;
+  justify-content: space-between;
+}

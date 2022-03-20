@@ -9,13 +9,35 @@ import { Comments, ScoresEvent, User } from 'src/app/model/model';
 })
 export class RepliesComponent implements OnInit {
   @Input() reply!: Comments;
+  @Input() comment!: Comments;
   @Input() currentUser!: User;
   @Output() onScoreReply: EventEmitter<ScoresEvent> = new EventEmitter<ScoresEvent>();
   @Output() onDeleteReply:  EventEmitter<number> = new EventEmitter<number>();
   @Output() ontoggleReply: EventEmitter<any> = new EventEmitter<any>();
+  @Output() onReplyUpdate: EventEmitter<any> = new EventEmitter<any>();
+
+  showEdit: boolean = false;
+
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  toggleUpdate(){
+    if (!this.reply.content) {
+      return;
+    }
+    this.onReplyUpdate.emit({
+      id: this.comment.id ,
+      content: this.reply.content,
+    })
+    this.toggleEdit()
+
+  }
+
+  toggleEdit(){
+    this.showEdit = !this.showEdit;
   }
 
   onDelete(){

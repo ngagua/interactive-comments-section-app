@@ -44,6 +44,10 @@ export class CommentsshellComponent implements OnInit {
       }
     })
   }
+
+  
+
+
   onScoreReplyHandler({ id, type }: ScoresEvent) {
     this.commentslist.forEach(item => {
       item.replies.forEach(reply => {
@@ -109,7 +113,7 @@ export class CommentsshellComponent implements OnInit {
     }
 
 
-    onReplyhandler({content, id}:any) {
+  onReplyhandler({content, id}:any) {
       const newReply: Comments = {
         id: this.generateMaxId(),
         content: content,
@@ -130,5 +134,22 @@ export class CommentsshellComponent implements OnInit {
       
     }
   
+    onUpdateHandler({id, content}:any){
+      this.commentslist.forEach(comment => {
+        if(comment.id == id){
+          comment.content = content
+        }
+
+      })
+}
+
+onReplyUpdatehandler({id, content}:any){
+  this.commentslist.forEach(comment => {
+    if(comment.id == id){
+      comment.replies[content] = content
+    }
+
+  })
+}
 
 }

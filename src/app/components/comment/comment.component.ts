@@ -17,17 +17,37 @@ export class CommentComponent implements OnInit {
   @Output() onDeleteComment:  EventEmitter<number> = new EventEmitter<number>();
   @Output() onDeleteReply:  EventEmitter<number> = new EventEmitter<number>();
   @Output() onReply: EventEmitter<any> = new EventEmitter<any>();
+  @Output() onUpdate: EventEmitter<any> = new EventEmitter<any>();
+  @Output() onReplyUpdate: EventEmitter<any> = new EventEmitter<any>();
 
 
   isReply: boolean = false;
+  showEdit: boolean = false;
 
 
   constructor() { }
 
   ngOnInit(): void {
   }
+
   toggleReply() {
    this.isReply = !this.isReply;
+  }
+
+
+  toggleEdit() {
+    this.showEdit = !this.showEdit;
+  }
+
+  toggleUpdate(){
+    if (!this.comment.content) {
+      return;
+    }
+    this.onUpdate.emit({
+      id: this.comment?.id ,
+      content: this.comment.content,
+    })
+    this.toggleEdit()
   }
 
   onDelete(){
@@ -55,6 +75,13 @@ export class CommentComponent implements OnInit {
     this.toggleReply();
   }
 
+  onReplyUpdatehandler({ content, id }:any){
+    this.onReplyUpdate.emit({
+      content: content,
+      id: id,
+    })
+
+  }
   onScoreReplyHandler({ id, type }: ScoresEvent) {
     this.onScoreReply.emit({
       id: id,

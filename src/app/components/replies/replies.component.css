@@ -44,3 +44,23 @@
   display: flex;
   gap: 7px;
 }
+
+.rpl-text {
+  width: 500px;
+  height: 55px;
+  border-radius: 5px;
+}
+
+.confirmbtn {
+  height: 30px;
+  width: 90px;
+  border: none;
+  background-color: blue;
+  border-radius: 5px;
+  color: white;
+}
+
+.edit-content {
+  display: flex;
+  justify-content: space-between;
+}

@@ -29,24 +29,32 @@
           </div>
           <div class="edit-btn">
             <img class="replyicon" src="/assets/images/icon-edit.svg" />
-            <button class="btn">Edit</button>
+            <button class="btn" (click)="toggleEdit()">Edit</button>
           </div>
         </div>
       </div>
     </div>
 
     <div class="comments__content">
-      <span>{{ comment.content }}</span>
+      <div *ngIf="showEdit" class="edit-content">
+        <textarea [(ngModel)]="comment.content" class="rpl-text">{{
+          comment.content
+        }}</textarea>
+        <button class="confirmbtn" (click)="toggleUpdate()">UPDATE</button>
+      </div>
+      <span *ngIf="!showEdit">{{ comment.content }}</span>
     </div>
   </div>
 </div>
 <app-replies
   *ngFor="let item of comment.replies"
   [currentUser]="currentUser"
+  [comment]="comment"
   [reply]="item"
   (onScoreReply)="onScoreReplyHandler($event)"
   (onDeleteReply)="onDeleteReplyHandler($event)"
   (ontoggleReply)="toggleReply()"
+  (onReplyUpdate)="onReplyUpdatehandler($event)"
 >
 </app-replies>
 <app-new-replies

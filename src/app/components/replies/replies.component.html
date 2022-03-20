@@ -38,12 +38,18 @@
         </div>
         <div class="replybtn">
           <img class="replyicon" src="/assets/images/icon-edit.svg" />
-          <button class="btn">Edit</button>
+          <button class="btn" (click)="toggleUpdate()">Edit</button>
         </div>
       </div>
     </div>
-    <div class="content1">
-      <span>{{ reply?.content }}</span>
+    <div class="content">
+      <div *ngIf="showEdit" class="edit-content">
+        <textarea [(ngModel)]="reply.content" class="rpl-text">{{
+          reply.content
+        }}</textarea>
+        <button class="confirmbtn" (click)="toggleUpdate()">UPDATE</button>
+      </div>
+      <span *ngIf="!showEdit">{{ reply?.content }}</span>
     </div>
   </div>
 </div>
