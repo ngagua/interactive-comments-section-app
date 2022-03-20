@@ -78,6 +78,17 @@ export class CommentsshellComponent implements OnInit {
     this.commentslist.push(newComment);
 
   }
+  deleteCommenthandler(id:number) {    
+     this.commentslist = this.commentslist.filter((comment) => comment.id !== id);
+      }
+  deleteReplyhandler(id:number) { 
+     this.commentslist.filter(item => {
+          item.replies.filter(reply => {
+            reply.id == id
 
+         
+        })
+      })
+    }
 
 }

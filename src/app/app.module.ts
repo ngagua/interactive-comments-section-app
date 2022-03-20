@@ -7,7 +7,7 @@ import { RepliesComponent } from './components/replies/replies.component';
 import { NewRepliesComponent } from './components/new-replies/new-replies.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { FormsModule } from '@angular/forms';
-import { NewCommentComponent } from './new-comment/new-comment.component';
+import { NewCommentComponent } from './components/new-comment/new-comment.component';
 
 
 @NgModule({

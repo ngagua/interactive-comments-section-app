@@ -1,4 +1,4 @@
-<div class="replies">
+<div class="comment">
   <div class="container">
     <div class="user-info">
       <div class="user">
@@ -6,8 +6,12 @@
         <span>{{ currentUser?.username }}</span>
       </div>
 
-      <textarea class="rpl-text" [(ngModel)]="content"><span>@</span></textarea>
-      <button class="confirmbtn" (click)="addReply()">reply</button>
+      <textarea
+        class="rpl-text"
+        placeholder="Add a comment..."
+        [(ngModel)]="content"
+      ></textarea>
+      <button class="confirmbtn" (click)="addComment()">reply</button>
     </div>
   </div>
 </div>

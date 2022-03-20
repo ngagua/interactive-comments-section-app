@@ -1,24 +1,39 @@
-<div class="wrapper reply-wrapper" id="{{ reply?.id }}">
-  <div class="flex-container">
+<div class="replies" id="{{ reply?.id }}">
+  <div class="container">
     <div class="likes">
-      <button class="plus reply-plus" (click)="changeReplyScore('plus')">+</button>
+      <button class="plus reply-plus" (click)="changeReplyScore('plus')">
+        +
+      </button>
       <span>{{ reply?.score }}</span>
-      <button class="minus reply-minus" (click)="changeReplyScore('minus')">-</button>
+      <button class="minus reply-minus" (click)="changeReplyScore('minus')">
+        -
+      </button>
     </div>
-    <div class="user-info1">
-      <div class="avatar1">
-        <img class="avatars" src="{{ reply?.user?.image?.png }}" />
+    <div class="header">
+      <div class="user-info">
+        <div class="avatar1">
+          <img class="avatars" src="{{ reply?.user?.image?.png }}" />
+        </div>
+        <div class="username1">
+          <span>{{ reply?.user?.username }} </span>
+        </div>
+        <div class="date1">
+          <span>{{ reply?.createdAt }}</span>
+        </div>
       </div>
-      <div class="username1">
-        <span>{{ reply?.user?.username }} </span>
+      <div *ngIf="reply.user == currentUser" class="currentuser-btn">
+        <div class="replybtn">
+          <img class="replyicon" src="/assets/images/icon-delete.svg" />
+          <button class="btn" (click)="onDelete()">delete</button>
+        </div>
+        <div class="replybtn">
+          <img class="replyicon" src="/assets/images/icon-edit.svg" />
+          <button class="btn">Edit</button>
+        </div>
       </div>
-      <div class="date1">
-        <span>{{ reply?.createdAt }}</span>
-      </div>
-
-      <div class="content1">
-        <span>{{ reply?.content }}</span>
-      </div>
+    </div>
+    <div class="content1">
+      <span>{{ reply?.content }}</span>
     </div>
   </div>
 </div>
